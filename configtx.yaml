@@ -303,9 +303,48 @@ Channel: &ChannelDefaults
 #   as parameters to the configtxgen tool
 #
 ################################################################################
+# Profiles:
+#     OrdererGenesis:
+#         <<: *ChannelDefaults
+#         Orderer:
+#             <<: *OrdererDefaults
+#             Organizations:
+#                 - *OrdererOrg
+#             Capabilities:
+#                 <<: *OrdererCapabilities
+#         Consortiums:
+#             SampleConsortium:
+#                 Organizations:
+#                     - *Org1
+#                     - *Org2
+#                     - *Org3
+
+#     ChannelAll:
+#         Consortium: SampleConsortium
+#         <<: *ChannelDefaults
+#         Application:
+#             <<: *ApplicationDefaults
+#             Organizations:
+#                 - *Org1
+#                 - *Org2
+#                 - *Org3
+#             Capabilities:
+#                 <<: *ApplicationCapabilities
+
+#     Channel12:
+#         Consortium: SampleConsortium
+#         <<: *ChannelDefaults
+#         Application:
+#             <<: *ApplicationDefaults
+#             Organizations:
+#                 - *Org1
+#                 - *Org2
+#             Capabilities:
+#                 <<: *ApplicationCapabilities
 Profiles:
     OrdererGenesis:
-        <<: *ChannelDefaults
+        Capabilities:
+            <<: *ChannelCapabilities
         Orderer:
             <<: *OrdererDefaults
             Organizations:
@@ -321,23 +360,23 @@ Profiles:
 
     ChannelAll:
         Consortium: SampleConsortium
-        <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
             Organizations:
                 - *Org1
                 - *Org2
                 - *Org3
+
             Capabilities:
                 <<: *ApplicationCapabilities
 
     Channel12:
         Consortium: SampleConsortium
-        <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
             Organizations:
                 - *Org1
                 - *Org2
+
             Capabilities:
                 <<: *ApplicationCapabilities
