@@ -3,7 +3,7 @@ version: '3.7'
 services:
   orderer.dummy.com:
     container_name: orderer.dummy.com
-    image: hyperledger/fabric-orderer:amd64-1.4.3
+    image: hyperledger/fabric-orderer:amd64-1.4.8
     environment:
       - FABRIC_LOGGING_SPEC=info
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -27,7 +27,7 @@ services:
 
   orderer2.dummy.com:
     container_name: orderer2.dummy.com
-    image: hyperledger/fabric-orderer:amd64-1.4.3
+    image: hyperledger/fabric-orderer:amd64-1.4.8
     environment:
       - FABRIC_LOGGING_SPEC=info
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -51,7 +51,7 @@ services:
 
   orderer3.dummy.com:
     container_name: orderer3.dummy.com
-    image: hyperledger/fabric-orderer:amd64-1.4.3
+    image: hyperledger/fabric-orderer:amd64-1.4.8
     environment:
       - FABRIC_LOGGING_SPEC=info
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -74,7 +74,7 @@ services:
     - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer3.dummy.com/tls/:/var/hyperledger/orderer/tls
 
   peer0.org1.dummy.com:
-    image: hyperledger/fabric-peer:amd64-1.4.3
+    image: hyperledger/fabric-peer:amd64-1.4.8
     container_name: peer0.org1.dummy.com
     environment:
       - FABRIC_LOGGING_SPEC=info
@@ -82,6 +82,7 @@ services:
       - CORE_PEER_ID=peer0.org1.dummy.com
       - CORE_PEER_ADDRESS=peer0.org1.dummy.com:7051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.dummy.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.dummy.com:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
       - CORE_PEER_TLS_ENABLED=true
@@ -100,7 +101,7 @@ services:
         - ./crypto-config/peerOrganizations/org1.dummy.com/peers/peer0.org1.dummy.com/tls:/etc/hyperledger/peer/tls
 
   peer0.org2.dummy.com:
-    image: hyperledger/fabric-peer:amd64-1.4.3
+    image: hyperledger/fabric-peer:amd64-1.4.8
     container_name: peer0.org2.dummy.com
     environment:
       - FABRIC_LOGGING_SPEC=info
@@ -108,6 +109,7 @@ services:
       - CORE_PEER_ID=peer0.org2.dummy.com
       - CORE_PEER_ADDRESS=peer0.org2.dummy.com:7051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.dummy.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.dummy.com:7051
       - CORE_PEER_LOCALMSPID=Org2MSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
       - CORE_PEER_TLS_ENABLED=true
@@ -126,7 +128,7 @@ services:
         - ./crypto-config/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/tls:/etc/hyperledger/peer/tls
 
   peer0.org3.dummy.com:
-    image: hyperledger/fabric-peer:amd64-1.4.3
+    image: hyperledger/fabric-peer:amd64-1.4.8
     container_name: peer0.org3.dummy.com
     environment:
       - FABRIC_LOGGING_SPEC=info
@@ -134,6 +136,7 @@ services:
       - CORE_PEER_ID=peer0.org3.dummy.com
       - CORE_PEER_ADDRESS=peer0.org3.dummy.com:7051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org3.dummy.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org3.dummy.com:7051
       - CORE_PEER_LOCALMSPID=Org3MSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
       - CORE_PEER_TLS_ENABLED=true
