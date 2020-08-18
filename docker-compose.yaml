@@ -83,6 +83,7 @@ services:
       - CORE_PEER_ADDRESS=peer0.org1.dummy.com:7051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.dummy.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.dummy.com:7051
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
       - CORE_PEER_LOCALMSPID=Org1MSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
       - CORE_PEER_TLS_ENABLED=true
@@ -110,6 +111,7 @@ services:
       - CORE_PEER_ADDRESS=peer0.org2.dummy.com:7051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.dummy.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.dummy.com:7051
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
       - CORE_PEER_LOCALMSPID=Org2MSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
       - CORE_PEER_TLS_ENABLED=true
@@ -137,6 +139,7 @@ services:
       - CORE_PEER_ADDRESS=peer0.org3.dummy.com:7051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org3.dummy.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org3.dummy.com:7051
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
       - CORE_PEER_LOCALMSPID=Org3MSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
       - CORE_PEER_TLS_ENABLED=true
