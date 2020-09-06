@@ -1,5 +1,8 @@
 version: '3.7'
 
+networks:
+  test:
+
 services:
   orderer.dummy.com:
     container_name: orderer.dummy.com
@@ -21,9 +24,11 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
-    - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-    - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer.dummy.com/msp:/var/hyperledger/orderer/msp
-    - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer.dummy.com/tls/:/var/hyperledger/orderer/tls
+      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer.dummy.com/msp:/var/hyperledger/orderer/msp
+      - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer.dummy.com/tls/:/var/hyperledger/orderer/tls
+    networks:
+      - test
 
   orderer2.dummy.com:
     container_name: orderer2.dummy.com
@@ -45,9 +50,11 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
-    - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-    - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer2.dummy.com/msp:/var/hyperledger/orderer/msp
-    - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer2.dummy.com/tls/:/var/hyperledger/orderer/tls
+      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer2.dummy.com/msp:/var/hyperledger/orderer/msp
+      - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer2.dummy.com/tls/:/var/hyperledger/orderer/tls
+    networks:
+      - test
 
   orderer3.dummy.com:
     container_name: orderer3.dummy.com
@@ -69,9 +76,11 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
-    - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-    - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer3.dummy.com/msp:/var/hyperledger/orderer/msp
-    - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer3.dummy.com/tls/:/var/hyperledger/orderer/tls
+      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer3.dummy.com/msp:/var/hyperledger/orderer/msp
+      - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer3.dummy.com/tls/:/var/hyperledger/orderer/tls
+    networks:
+      - test
 
   peer0.org1.dummy.com:
     image: hyperledger/fabric-peer:amd64-1.4.8
@@ -93,13 +102,15 @@ services:
       - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/peer/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/peer/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/peer/tls/ca.crt
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_default
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_test
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     volumes:
-        - /var/run/:/host/var/run/
-        - ./crypto-config/peerOrganizations/org1.dummy.com/peers/peer0.org1.dummy.com/msp:/etc/hyperledger/peer/msp
-        - ./crypto-config/peerOrganizations/org1.dummy.com/peers/peer0.org1.dummy.com/tls:/etc/hyperledger/peer/tls
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/org1.dummy.com/peers/peer0.org1.dummy.com/msp:/etc/hyperledger/peer/msp
+      - ./crypto-config/peerOrganizations/org1.dummy.com/peers/peer0.org1.dummy.com/tls:/etc/hyperledger/peer/tls
+    networks:
+      - test
 
   peer0.org2.dummy.com:
     image: hyperledger/fabric-peer:amd64-1.4.8
@@ -121,13 +132,15 @@ services:
       - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/peer/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/peer/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/peer/tls/ca.crt
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_default
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_test
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     volumes:
-        - /var/run/:/host/var/run/
-        - ./crypto-config/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/msp:/etc/hyperledger/peer/msp
-        - ./crypto-config/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/tls:/etc/hyperledger/peer/tls
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/msp:/etc/hyperledger/peer/msp
+      - ./crypto-config/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/tls:/etc/hyperledger/peer/tls
+    networks:
+      - test
 
   peer0.org3.dummy.com:
     image: hyperledger/fabric-peer:amd64-1.4.8
@@ -149,10 +162,12 @@ services:
       - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/peer/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/peer/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/peer/tls/ca.crt
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_default
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_test
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     volumes:
-        - /var/run/:/host/var/run/
-        - ./crypto-config/peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/msp:/etc/hyperledger/peer/msp
-        - ./crypto-config/peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/tls:/etc/hyperledger/peer/tls
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/msp:/etc/hyperledger/peer/msp
+      - ./crypto-config/peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/tls:/etc/hyperledger/peer/tls
+    networks:
+      - test

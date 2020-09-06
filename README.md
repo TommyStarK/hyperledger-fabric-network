@@ -8,6 +8,8 @@ Hyperledger Fabric network for demo purposes only
 # Generate genesis block, crypto and channel(s) artifacts
 ❯ ./generate-artifacts.sh
 
+❯ export COMPOSE_PROJECT_NAME=fabric_network
+
 # Boot the network
 ❯ docker-compose up -d
 ```
