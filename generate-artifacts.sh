@@ -33,3 +33,13 @@ docker run -it --rm --mount type=bind,src=`pwd`,dst=/crypto hyperledger/fabric-t
 
 docker run -it --rm --mount type=bind,src=`pwd`,dst=/crypto hyperledger/fabric-tools:amd64-1.4.8 bash -c \
 "cd /crypto ; export FABRIC_CFG_PATH=/crypto ; configtxgen -profile ChannelAll -outputAnchorPeersUpdate ./channel-artifacts/Org3MSPanchors_channelall.tx -channelID channelall -asOrg Org3MSP"
+
+orgs=($(ls -d ./crypto-config/peerOrganizations/*));
+for org in "${orgs[@]}"
+do
+    users=($(ls -d $org/users/*));
+    for user in "${users[@]}"
+    do
+        mv $user/msp/keystore/$(ls $user/msp/keystore) $user/msp/keystore/priv_sk;
+    done
+done
