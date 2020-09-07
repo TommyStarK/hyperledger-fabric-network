@@ -216,8 +216,6 @@ Orderer: &OrdererDefaults
 
     Addresses:
         - orderer.dummy.com:7050
-        - orderer2.dummy.com:7050
-        - orderer3.dummy.com:7050
 
     # Batch Timeout: The amount of time to wait before creating a batch
     BatchTimeout: 2s
@@ -247,14 +245,6 @@ Orderer: &OrdererDefaults
           Port: 7050
           ClientTLSCert: crypto-config/ordererOrganizations/dummy.com/orderers/orderer.dummy.com/tls/server.crt
           ServerTLSCert: crypto-config/ordererOrganizations/dummy.com/orderers/orderer.dummy.com/tls/server.crt
-        - Host: orderer2.dummy.com
-          Port: 7050
-          ClientTLSCert: crypto-config/ordererOrganizations/dummy.com/orderers/orderer2.dummy.com/tls/server.crt
-          ServerTLSCert: crypto-config/ordererOrganizations/dummy.com/orderers/orderer2.dummy.com/tls/server.crt
-        - Host: orderer3.dummy.com
-          Port: 7050
-          ClientTLSCert: crypto-config/ordererOrganizations/dummy.com/orderers/orderer3.dummy.com/tls/server.crt
-          ServerTLSCert: crypto-config/ordererOrganizations/dummy.com/orderers/orderer3.dummy.com/tls/server.crt
 
     # Organizations is the list of orgs which are defined as participants on
     # the orderer side of the network
