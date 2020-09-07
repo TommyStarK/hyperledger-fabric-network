@@ -3,8 +3,6 @@ OrdererOrgs:
     Domain: dummy.com
     Specs:
       - Hostname: orderer
-      - Hostname: orderer2
-      - Hostname: orderer3
     CA:
       OrganizationalUnit: admin
 PeerOrgs:

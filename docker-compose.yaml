@@ -2,8 +2,6 @@ version: '3.7'
 
 volumes:
   orderer.dummy.com:
-  orderer2.dummy.com:
-  orderer3.dummy.com:
   peer0.org1.dummy.com:
   peer0.org2.dummy.com:
   peer0.org3.dummy.com:
@@ -37,62 +35,6 @@ services:
       - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer.dummy.com/msp:/var/hyperledger/orderer/msp
       - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer.dummy.com/tls/:/var/hyperledger/orderer/tls
       - orderer.dummy.com:/var/hyperledger/production/orderer
-    networks:
-      - test
-
-  orderer2.dummy.com:
-    container_name: orderer2.dummy.com
-    image: hyperledger/fabric-orderer:amd64-2.2.0
-    environment:
-      - FABRIC_LOGGING_SPEC=info
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_LISTENPORT=7050
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
-      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
-      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
-      - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
-    command: orderer
-    volumes:
-      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer2.dummy.com/msp:/var/hyperledger/orderer/msp
-      - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer2.dummy.com/tls/:/var/hyperledger/orderer/tls
-      - orderer2.dummy.com:/var/hyperledger/production/orderer
-    networks:
-      - test
-
-  orderer3.dummy.com:
-    container_name: orderer3.dummy.com
-    image: hyperledger/fabric-orderer:amd64-2.2.0
-    environment:
-      - FABRIC_LOGGING_SPEC=info
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_LISTENPORT=7050
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
-      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
-      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
-      - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
-    command: orderer
-    volumes:
-      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-      - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer3.dummy.com/msp:/var/hyperledger/orderer/msp
-      - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer3.dummy.com/tls/:/var/hyperledger/orderer/tls
-      - orderer3.dummy.com:/var/hyperledger/production/orderer
     networks:
       - test
 
