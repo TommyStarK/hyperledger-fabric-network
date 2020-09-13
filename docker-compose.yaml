@@ -43,21 +43,23 @@ services:
     container_name: peer0.org1.dummy.com
     environment:
       - FABRIC_LOGGING_SPEC=info
-      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - CORE_PEER_ID=peer0.org1.dummy.com
-      - CORE_PEER_ADDRESS=peer0.org1.dummy.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.dummy.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.dummy.com:7051
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
       - CORE_PEER_LOCALMSPID=Org1MSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
-      - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_GOSSIP_USELEADERELECTION=true
-      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_ADDRESS=peer0.org1.dummy.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.dummy.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.dummy.com:7051
       - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_TLS_ENABLED=true
       - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/peer/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/peer/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/peer/tls/ca.crt
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_PEER_NETWORKID=${COMPOSE_PROJECT_NAME}
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_test
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
@@ -74,21 +76,23 @@ services:
     container_name: peer0.org2.dummy.com
     environment:
       - FABRIC_LOGGING_SPEC=info
-      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - CORE_PEER_ID=peer0.org2.dummy.com
-      - CORE_PEER_ADDRESS=peer0.org2.dummy.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.dummy.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.dummy.com:7051
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
       - CORE_PEER_LOCALMSPID=Org2MSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
-      - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_GOSSIP_USELEADERELECTION=true
-      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_ADDRESS=peer0.org2.dummy.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.dummy.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.dummy.com:7051
       - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_TLS_ENABLED=true
       - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/peer/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/peer/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/peer/tls/ca.crt
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_PEER_NETWORKID=${COMPOSE_PROJECT_NAME}
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_test
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
@@ -105,21 +109,23 @@ services:
     container_name: peer0.org3.dummy.com
     environment:
       - FABRIC_LOGGING_SPEC=info
-      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - CORE_PEER_ID=peer0.org3.dummy.com
-      - CORE_PEER_ADDRESS=peer0.org3.dummy.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org3.dummy.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org3.dummy.com:7051
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
       - CORE_PEER_LOCALMSPID=Org3MSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
-      - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_GOSSIP_USELEADERELECTION=true
-      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_ADDRESS=peer0.org3.dummy.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org3.dummy.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org3.dummy.com:7051
       - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_TLS_ENABLED=true
       - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/peer/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/peer/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/peer/tls/ca.crt
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_PEER_NETWORKID=${COMPOSE_PROJECT_NAME}
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_test
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
