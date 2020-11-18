@@ -14,7 +14,7 @@ networks:
 services:
   orderer.dummy.com:
     container_name: orderer.dummy.com
-    image: hyperledger/fabric-orderer:2.2.1
+    image: hyperledger/fabric-orderer:2.3.0
     environment:
       - FABRIC_LOGGING_SPEC=info
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -42,7 +42,7 @@ services:
 
   orderer2.dummy.com:
     container_name: orderer2.dummy.com
-    image: hyperledger/fabric-orderer:2.2.1
+    image: hyperledger/fabric-orderer:2.3.0
     environment:
       - FABRIC_LOGGING_SPEC=info
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -70,7 +70,7 @@ services:
 
   orderer3.dummy.com:
     container_name: orderer3.dummy.com
-    image: hyperledger/fabric-orderer:2.2.1
+    image: hyperledger/fabric-orderer:2.3.0
     environment:
       - FABRIC_LOGGING_SPEC=info
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -97,7 +97,7 @@ services:
       - test
 
   peer0.org1.dummy.com:
-    image: hyperledger/fabric-peer:2.2.1
+    image: hyperledger/fabric-peer:2.3.0
     container_name: peer0.org1.dummy.com
     environment:
       - FABRIC_LOGGING_SPEC=info
@@ -130,7 +130,7 @@ services:
       - test
 
   peer0.org2.dummy.com:
-    image: hyperledger/fabric-peer:2.2.1
+    image: hyperledger/fabric-peer:2.3.0
     container_name: peer0.org2.dummy.com
     environment:
       - FABRIC_LOGGING_SPEC=info
@@ -163,7 +163,7 @@ services:
       - test
 
   peer0.org3.dummy.com:
-    image: hyperledger/fabric-peer:2.2.1
+    image: hyperledger/fabric-peer:2.3.0
     container_name: peer0.org3.dummy.com
     environment:
       - FABRIC_LOGGING_SPEC=info
