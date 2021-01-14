@@ -5,7 +5,7 @@ volumes:
   orderer2.dummy.com:
   orderer3.dummy.com:
   peer0.org1.dummy.com:
-  # couchdb.org1.dummy.com:
+  couchdb.org1.dummy.com:
   peer0.org2.dummy.com:
   peer0.org3.dummy.com:
 
@@ -97,19 +97,19 @@ services:
     networks:
       - test
 
-  # couchdb.org1.dummy.com:
-  #   image: hyperledger/fabric-couchdb:0.4.22
-  #   hostname: couchdb.org1.dummy.com
-  #   environment:
-  #     - COUCHDB_USER=root
-  #     - COUCHDB_PASSWORD=root
-  #   ports:
-  #     #  TO access the UI
-  #     - 5984:5984
-  #   volumes:
-  #     - couchdb.org1.dummy.com:/opt/couchdb/data
-  #   networks:
-  #     - test
+  couchdb.org1.dummy.com:
+    image: couchdb:3.1.1
+    container_name: couchdb.org1.dummy.com
+    environment:
+      - COUCHDB_USER=root
+      - COUCHDB_PASSWORD=root
+    ports:
+      #  TO access the UI
+      - 5984:5984
+    volumes:
+      - couchdb.org1.dummy.com:/opt/couchdb/data
+    networks:
+      - test
 
   peer0.org1.dummy.com:
     image: hyperledger/fabric-peer:2.3.0
@@ -134,10 +134,10 @@ services:
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - CORE_PEER_NETWORKID=${COMPOSE_PROJECT_NAME}
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_test
-      # - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
-      # - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.org1.dummy.com:5984
-      # - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=root
-      # - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=root
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.org1.dummy.com:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=root
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=root
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     volumes:
