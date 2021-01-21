@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -e
 rm -rf channel-artifacts
 rm -rf crypto-config
 
