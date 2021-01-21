@@ -24,6 +24,7 @@ services:
       - ORDERER_GENERAL_LISTENPORT=7050
       - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
       - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      - ORDERER_GENERAL_PROFILE_ENABLED=true
       - ORDERER_GENERAL_TLS_ENABLED=true
       - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
@@ -52,6 +53,7 @@ services:
       - ORDERER_GENERAL_LISTENPORT=7050
       - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
       - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      - ORDERER_GENERAL_PROFILE_ENABLED=true
       - ORDERER_GENERAL_TLS_ENABLED=true
       - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
@@ -80,6 +82,7 @@ services:
       - ORDERER_GENERAL_LISTENPORT=7050
       - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
       - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      - ORDERER_GENERAL_PROFILE_ENABLED=true
       - ORDERER_GENERAL_TLS_ENABLED=true
       - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
@@ -117,22 +120,24 @@ services:
     depends_on: 
       - couchdb.org1.dummy.com
     environment:
+      - DOCKER_NS=hyperledger
       - FABRIC_LOGGING_SPEC=info
+      - TWO_DIGIT_VERSION=2.3
       - CORE_PEER_ID=peer0.org1.dummy.com
       - CORE_PEER_ADDRESS=peer0.org1.dummy.com:7051
       - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
       - CORE_PEER_LOCALMSPID=Org1MSP
-      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
+      - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/peer/msp
       - CORE_PEER_PROFILE_ENABLED=true
       - CORE_PEER_GOSSIP_ORGLEADER=false
       - CORE_PEER_GOSSIP_USELEADERELECTION=true
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.dummy.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.dummy.com:7051
       - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/peer/tls/ca.crt
-      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/peer/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/var/hyperledger/peer/tls/ca.crt
+      - CORE_PEER_TLS_CERT_FILE=/var/hyperledger/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/var/hyperledger/peer/tls/server.key
       - CORE_PEER_TLS_SERVERHOSTOVERRIDE=peer0.org1.dummy.com
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - CORE_PEER_NETWORKID=${COMPOSE_PROJECT_NAME}
@@ -146,8 +151,8 @@ services:
     command: peer node start
     volumes:
       - /var/run/:/host/var/run/
-      - ./crypto-config/peerOrganizations/org1.dummy.com/peers/peer0.org1.dummy.com/msp:/etc/hyperledger/peer/msp
-      - ./crypto-config/peerOrganizations/org1.dummy.com/peers/peer0.org1.dummy.com/tls:/etc/hyperledger/peer/tls
+      - ./crypto-config/peerOrganizations/org1.dummy.com/peers/peer0.org1.dummy.com/msp:/var/hyperledger/peer/msp
+      - ./crypto-config/peerOrganizations/org1.dummy.com/peers/peer0.org1.dummy.com/tls:/var/hyperledger/peer/tls
       - peer0.org1.dummy.com:/var/hyperledger/production
     networks:
       - test
@@ -156,22 +161,24 @@ services:
     image: hyperledger/fabric-peer:2.3.0
     container_name: peer0.org2.dummy.com
     environment:
+      - DOCKER_NS=hyperledger
       - FABRIC_LOGGING_SPEC=info
+      - TWO_DIGIT_VERSION=2.3
       - CORE_PEER_ID=peer0.org2.dummy.com
       - CORE_PEER_ADDRESS=peer0.org2.dummy.com:7051
       - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
       - CORE_PEER_LOCALMSPID=Org2MSP
-      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
+      - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/peer/msp
       - CORE_PEER_PROFILE_ENABLED=true
       - CORE_PEER_GOSSIP_ORGLEADER=false
       - CORE_PEER_GOSSIP_USELEADERELECTION=true
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.dummy.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.dummy.com:7051
       - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/peer/tls/ca.crt
-      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/peer/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/var/hyperledger/peer/tls/ca.crt
+      - CORE_PEER_TLS_CERT_FILE=/var/hyperledger/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/var/hyperledger/peer/tls/server.key
       - CORE_PEER_TLS_SERVERHOSTOVERRIDE=peer0.org2.dummy.com
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - CORE_PEER_NETWORKID=${COMPOSE_PROJECT_NAME}
@@ -180,8 +187,8 @@ services:
     command: peer node start
     volumes:
       - /var/run/:/host/var/run/
-      - ./crypto-config/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/msp:/etc/hyperledger/peer/msp
-      - ./crypto-config/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/tls:/etc/hyperledger/peer/tls
+      - ./crypto-config/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/msp:/var/hyperledger/peer/msp
+      - ./crypto-config/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/tls:/var/hyperledger/peer/tls
       - peer0.org2.dummy.com:/var/hyperledger/production
     networks:
       - test
@@ -190,22 +197,24 @@ services:
     image: hyperledger/fabric-peer:2.3.0
     container_name: peer0.org3.dummy.com
     environment:
+      - DOCKER_NS=hyperledger
       - FABRIC_LOGGING_SPEC=info
+      - TWO_DIGIT_VERSION=2.3
       - CORE_PEER_ID=peer0.org3.dummy.com
       - CORE_PEER_ADDRESS=peer0.org3.dummy.com:7051
       - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
       - CORE_PEER_LOCALMSPID=Org3MSP
-      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp
+      - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/peer/msp
       - CORE_PEER_PROFILE_ENABLED=true
       - CORE_PEER_GOSSIP_ORGLEADER=false
       - CORE_PEER_GOSSIP_USELEADERELECTION=true
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org3.dummy.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org3.dummy.com:7051
       - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/peer/tls/ca.crt
-      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/peer/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/var/hyperledger/peer/tls/ca.crt
+      - CORE_PEER_TLS_CERT_FILE=/var/hyperledger/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/var/hyperledger/peer/tls/server.key
       - CORE_PEER_TLS_SERVERHOSTOVERRIDE=peer0.org3.dummy.com
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - CORE_PEER_NETWORKID=${COMPOSE_PROJECT_NAME}
@@ -214,8 +223,8 @@ services:
     command: peer node start
     volumes:
       - /var/run/:/host/var/run/
-      - ./crypto-config/peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/msp:/etc/hyperledger/peer/msp
-      - ./crypto-config/peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/tls:/etc/hyperledger/peer/tls
+      - ./crypto-config/peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/msp:/var/hyperledger/peer/msp
+      - ./crypto-config/peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/tls:/var/hyperledger/peer/tls
       - peer0.org3.dummy.com:/var/hyperledger/production
     networks:
       - test
