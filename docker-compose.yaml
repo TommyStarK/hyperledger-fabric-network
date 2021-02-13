@@ -15,7 +15,7 @@ networks:
 services:
   orderer.dummy.com:
     container_name: orderer.dummy.com
-    image: hyperledger/fabric-orderer:2.3.0
+    image: hyperledger/fabric-orderer:2.3
     environment:
       - FABRIC_LOGGING_SPEC=info
       - ORDERER_GENERAL_BOOTSTRAPMETHOD=file
@@ -44,7 +44,7 @@ services:
 
   orderer2.dummy.com:
     container_name: orderer2.dummy.com
-    image: hyperledger/fabric-orderer:2.3.0
+    image: hyperledger/fabric-orderer:2.3
     environment:
       - FABRIC_LOGGING_SPEC=info
       - ORDERER_GENERAL_BOOTSTRAPMETHOD=file
@@ -73,7 +73,7 @@ services:
 
   orderer3.dummy.com:
     container_name: orderer3.dummy.com
-    image: hyperledger/fabric-orderer:2.3.0
+    image: hyperledger/fabric-orderer:2.3
     environment:
       - FABRIC_LOGGING_SPEC=info
       - ORDERER_GENERAL_BOOTSTRAPMETHOD=file
@@ -115,7 +115,7 @@ services:
       - test
 
   peer0.org1.dummy.com:
-    image: hyperledger/fabric-peer:2.3.0
+    image: hyperledger/fabric-peer:2.3
     container_name: peer0.org1.dummy.com
     depends_on: 
       - couchdb.org1.dummy.com
@@ -146,7 +146,7 @@ services:
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.org1.dummy.com:5984
       - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=root
       - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=root
-      # - CORE_CHAINCODE_BUILDER=hyperledger/fabric-ccenv:2.3.0
+      # - CORE_CHAINCODE_BUILDER=hyperledger/fabric-ccenv:2.3
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     volumes:
@@ -158,7 +158,7 @@ services:
       - test
 
   peer0.org2.dummy.com:
-    image: hyperledger/fabric-peer:2.3.0
+    image: hyperledger/fabric-peer:2.3
     container_name: peer0.org2.dummy.com
     environment:
       - DOCKER_NS=hyperledger
@@ -194,7 +194,7 @@ services:
       - test
 
   peer0.org3.dummy.com:
-    image: hyperledger/fabric-peer:2.3.0
+    image: hyperledger/fabric-peer:2.3
     container_name: peer0.org3.dummy.com
     environment:
       - DOCKER_NS=hyperledger

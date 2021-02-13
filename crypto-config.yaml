@@ -6,8 +6,6 @@ OrdererOrgs:
       - Hostname: orderer
       - Hostname: orderer2
       - Hostname: orderer3
-    CA:
-      OrganizationalUnit: admin
 PeerOrgs:
   - Name: Org1
     Domain: org1.dummy.com
