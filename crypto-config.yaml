@@ -4,8 +4,6 @@ OrdererOrgs:
     EnableNodeOUs: true
     Specs:
       - Hostname: orderer
-    CA:
-      OrganizationalUnit: admin
 PeerOrgs:
   - Name: Org1
     Domain: org1.dummy.com
