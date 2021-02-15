@@ -1,12 +1,5 @@
 version: '3.7'
 
-volumes:
-  orderer.dummy.com:
-  peer0.org1.dummy.com:
-  peer0.org2.dummy.com:
-  peer0.org3.dummy.com:
-  couchdb.org1.dummy.com:
-
 networks:
   test:
 
@@ -36,7 +29,6 @@ services:
       - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
       - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer.dummy.com/msp:/var/hyperledger/orderer/msp
       - ./crypto-config/ordererOrganizations/dummy.com/orderers/orderer.dummy.com/tls/:/var/hyperledger/orderer/tls
-      - orderer.dummy.com:/var/hyperledger/production/orderer
     networks:
       - test
 
@@ -49,8 +41,6 @@ services:
     ports:
       #  TO access the UI
       - 5984:5984
-    volumes:
-      - couchdb.org1.dummy.com:/opt/couchdb/data
     networks:
       - test
 
@@ -93,7 +83,6 @@ services:
       - /var/run/:/host/var/run/
       - ./crypto-config/peerOrganizations/org1.dummy.com/peers/peer0.org1.dummy.com/msp:/var/hyperledger/peer/msp
       - ./crypto-config/peerOrganizations/org1.dummy.com/peers/peer0.org1.dummy.com/tls:/var/hyperledger/peer/tls
-      - peer0.org1.dummy.com:/var/hyperledger/production
     networks:
       - test
 
@@ -129,7 +118,6 @@ services:
       - /var/run/:/host/var/run/
       - ./crypto-config/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/msp:/var/hyperledger/peer/msp
       - ./crypto-config/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/tls:/var/hyperledger/peer/tls
-      - peer0.org2.dummy.com:/var/hyperledger/production
     networks:
       - test
 
@@ -165,6 +153,5 @@ services:
       - /var/run/:/host/var/run/
       - ./crypto-config/peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/msp:/var/hyperledger/peer/msp
       - ./crypto-config/peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/tls:/var/hyperledger/peer/tls
-      - peer0.org3.dummy.com:/var/hyperledger/production
     networks:
       - test
